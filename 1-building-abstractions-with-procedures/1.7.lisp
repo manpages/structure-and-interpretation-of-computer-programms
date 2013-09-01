@@ -1,9 +1,11 @@
 (load "sqrt-newton-example.lisp")
 
 (define (test_do x)
-  (define mistake (abs (- (square (sqrt-newton x)) x)))
-  (and (< mistake precision)
-       (< mistake (* x precision))))
+  (define result (sqrt-newton x))
+  (define mistake (abs (- (square result) x)))
+  (or (and (< mistake precision) ; we either meet requirements
+        (< mistake (* x precision))) ; even for small numbers
+      (= 0 (- (sqrt x) result)))) ; or we couldn't do better
 
 (define (test_small x)
   (if (= x 0)
@@ -28,18 +30,18 @@
   (display "Running small test...\n")
   (or 
     (test_small 4)
-    (display "FAIL (small test)!\n")
-    #f)
+    (and (display "FAIL (small test)!\n")
+    #f))
 
   (display "Running normal test...\n")
   (or
     (test_normal 10)
-    (display "FAIL (normal test)!\n")
-    #f)
+    (and (display "FAIL (normal test)!\n")
+    #f))
 
-  ;(display "Running big test...\n")
-  ;(or 
-  ;  (test_big 16)
-  ;  (display "FAIL (big test)!\n")
-  ;  #f)
+  (display "Running big test...\n")
+  (or 
+    (test_big 13)
+    (and (display "FAIL (big test)!\n")
+    #f))
 ))
