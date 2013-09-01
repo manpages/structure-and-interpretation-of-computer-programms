@@ -14,8 +14,11 @@
   (/ (+ x y) 2))
 
 (define (good-enough? guess x) (and 
-  (display "Checking if ")
+  (display x)
+  (display ": Checking if ")
   (display guess)
   (display " is good enough\n")
-  (< (abs (- (square guess) x)) 0.001))
+  (< (abs (- (square guess) x)) precision))
 )
+
+(define precision 0.001)
