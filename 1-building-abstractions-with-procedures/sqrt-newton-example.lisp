@@ -20,8 +20,7 @@
   (display " is good enough\n")
   (or
     (< (abs (- (improve guess x) guess)) min_delta))
-    ;(< (abs (- (square guess) x)) precision)))
 ))
 
-(define min_delta (square (square precision)))
-(define precision 0.0001)
+(define min_delta (square precision))
+(define precision 0.00001)
