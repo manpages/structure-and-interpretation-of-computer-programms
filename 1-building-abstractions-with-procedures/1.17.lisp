@@ -1,3 +1,4 @@
+; also coincidentally solves 1.18
 (define (fast-mul b n)
   (fast-mul-iter b n 0))
 
